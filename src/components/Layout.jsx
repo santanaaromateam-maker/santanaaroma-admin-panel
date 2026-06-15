@@ -19,19 +19,20 @@ export default function Layout() {
         </Link>
         <div className="admin-header__actions">
           {admin && <span className="admin-header__email">{admin.email}</span>}
-          <Link to="/" className={`btn ${onList ? 'btn-primary' : 'btn-secondary'}`}>
-            <i className="ri-list-check" aria-hidden="true" /> Services
+          <Link to="/" className={`btn ${onList ? 'btn-primary' : 'btn-secondary'}`} aria-label="Services list">
+            <i className="ri-list-check" aria-hidden="true" />
+            <span className="btn-text">Services</span>
           </Link>
-          <Link to="/services/new" className="btn btn-primary">
-            <i className="ri-add-line" aria-hidden="true" /> New
+          <Link to="/services/new" className="btn btn-primary" aria-label="New service">
+            <i className="ri-add-line" aria-hidden="true" />
+            <span className="btn-text">New</span>
           </Link>
-          <button type="button" className="btn btn-secondary" onClick={logout}>
-            <i className="ri-logout-box-r-line" aria-hidden="true" /> Log out
+          <button type="button" className="btn btn-secondary" onClick={logout} aria-label="Log out">
+            <i className="ri-logout-box-r-line" aria-hidden="true" />
+            <span className="btn-text">Log out</span>
           </button>
         </div>
       </header>
-
-      <div className="admin-spacer" aria-hidden="true" />
 
       <main className="admin-main">
         <Outlet />

@@ -37,7 +37,7 @@ a {
 /* ── Header (matches public site) ── */
 
 .admin-header {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
@@ -47,7 +47,7 @@ a {
   justify-content: space-between;
   gap: 1rem;
   padding: 12px 5%;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border-bottom: 2px solid var(--color--2);
@@ -96,7 +96,7 @@ a {
 }
 
 .admin-spacer {
-  height: 80px;
+  display: none;
 }
 
 /* ── Main content ── */
@@ -105,7 +105,8 @@ a {
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 1.5rem 5% 3rem;
+  padding: 1.25rem 5% 2.5rem;
+  flex: 1;
 }
 
 .page-hero {
@@ -157,7 +158,7 @@ a {
   flex: 1;
   display: grid;
   place-items: center;
-  padding: 6rem 5% 3rem;
+  padding: 2rem 5% 3rem;
 }
 
 .login-card {
@@ -370,6 +371,12 @@ a {
   background: rgba(226, 249, 249, 0.35);
 }
 
+.table__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 .table code {
   font-size: 0.82rem;
   padding: 0.15rem 0.4rem;
@@ -429,6 +436,100 @@ a {
   border: 2px dashed rgba(8, 82, 120, 0.2);
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Service cards (mobile list) ── */
+
+.service-cards {
+  display: none;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.service-card {
+  display: flex;
+  gap: 0.85rem;
+  padding: 0.85rem;
+  border-radius: 12px;
+  border: 1px solid rgba(8, 82, 120, 0.12);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.service-card__media {
+  flex-shrink: 0;
+}
+
+.service-card__thumb {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--color--2);
+}
+
+.service-card__thumb--empty {
+  display: grid;
+  place-items: center;
+  background: rgba(226, 249, 249, 0.6);
+  color: var(--color--3);
+  opacity: 0.5;
+  font-size: 1.35rem;
+}
+
+.service-card__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.service-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.service-card__title {
+  font-family: 'Momo Trust Display', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--color--3);
+}
+
+.service-card__slug {
+  font-size: 0.78rem;
+  opacity: 0.8;
+  word-break: break-all;
+}
+
+.service-card__actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.service-card__actions .btn {
+  flex: 1;
+  min-height: 40px;
+  font-size: 0.82rem;
+  padding: 0.45rem 0.6rem;
+}
+
+.empty-state__cta {
+  margin-top: 1rem;
+}
+
+.form-actions {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(8, 82, 120, 0.1);
+}
+
+.form-actions .btn {
+  width: 100%;
 }
 
 .empty-state {
@@ -519,25 +620,216 @@ a {
   flex-direction: column;
 }
 
-@media (max-width: 700px) {
-  .form-row {
-    grid-template-columns: 1fr;
+@media (max-width: 768px) {
+  .admin-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+    padding: 0.65rem 1rem;
   }
 
-  .admin-header {
-    flex-wrap: wrap;
-    padding: 10px 4%;
+  .admin-header__brand {
+    gap: 0.65rem;
+  }
+
+  .admin-header__logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+  }
+
+  .admin-header__title {
+    font-size: 1rem;
+  }
+
+  .admin-header__subtitle {
+    font-size: 0.68rem;
+  }
+
+  .admin-header__actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.45rem;
+  }
+
+  .admin-header__actions .btn {
+    width: 100%;
+    min-height: 42px;
+    padding: 0.45rem 0.35rem;
+    font-size: 0.78rem;
+    gap: 0.25rem;
   }
 
   .admin-header__email {
     display: none;
   }
 
-  .gallery-item {
+  .admin-main {
+    padding: 0.85rem 1rem 2rem;
+  }
+
+  .page-hero {
+    margin-bottom: 1rem;
+    padding: 1rem 0.85rem;
+    border-radius: 12px;
+  }
+
+  .page-hero__title {
+    font-size: 1.35rem;
+  }
+
+  .page-hero__subtitle {
+    font-size: 0.85rem;
+    line-height: 1.45;
+  }
+
+  .card {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+    margin-bottom: 1rem;
+  }
+
+  .toolbar__title {
+    font-size: 1.1rem;
+  }
+
+  .toolbar .btn {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .form-row {
     grid-template-columns: 1fr;
   }
 
-  .table {
+  .form-fieldset {
+    padding: 0.85rem;
+    margin-bottom: 1rem;
+    gap: 0.65rem;
+  }
+
+  .form-fieldset__legend {
+    font-size: 1rem;
+  }
+
+  .form-group label {
     font-size: 0.88rem;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 0.65rem 0.75rem;
+    font-size: 16px;
+    border-radius: 8px;
+  }
+
+  .hint {
+    font-size: 0.78rem;
+    line-height: 1.4;
+  }
+
+  .btn {
+    padding: 0.55rem 0.85rem;
+    font-size: 0.88rem;
+    border-radius: 8px;
+  }
+
+  .gallery-item {
+    grid-template-columns: 64px 1fr;
+    gap: 0.65rem;
+    padding: 0.65rem;
+  }
+
+  .gallery-item .btn {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .image-preview {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+  }
+
+  .service-cards {
+    display: flex;
+  }
+
+  .services-table {
+    display: none;
+  }
+
+  .login-page__main {
+    padding: 1.5rem 1rem 2rem;
+    align-items: flex-start;
+  }
+
+  .login-card {
+    max-width: none;
+  }
+
+  .login-card__icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 0.75rem;
+  }
+
+  .login-card h1 {
+    font-size: 1.45rem;
+  }
+
+  .login-card > p {
+    font-size: 0.88rem;
+    margin-bottom: 1.15rem;
+  }
+
+  .site-footer {
+    padding: 1.5rem 1rem 1rem;
+  }
+
+  .footer-grid {
+    gap: 1.25rem;
+  }
+
+  .footer-heading {
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .footer-text,
+  .footer-link {
+    font-size: 0.82rem;
+  }
+
+  .form-actions {
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    margin: 1rem -1rem -1rem;
+    padding: 0.85rem 1rem calc(0.85rem + env(safe-area-inset-bottom, 0px));
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(8, 82, 120, 0.12);
+    box-shadow: 0 -4px 20px rgba(8, 82, 120, 0.08);
+  }
+}
+
+@media (max-width: 380px) {
+  .admin-header__actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .admin-header__actions .btn:last-child {
+    grid-column: 1 / -1;
   }
 }

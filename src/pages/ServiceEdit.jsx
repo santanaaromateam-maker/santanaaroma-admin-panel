@@ -124,7 +124,8 @@ export default function ServiceEdit() {
         <div className="toolbar">
           <h2 className="toolbar__title">{isNew ? 'Datos del servicio' : form.title || 'Datos del servicio'}</h2>
           <Link to="/" className="btn btn-secondary">
-            <i className="ri-arrow-left-line" aria-hidden="true" /> Volver al listado
+            <i className="ri-arrow-left-line" aria-hidden="true" />
+            <span className="btn-text">Volver</span>
           </Link>
         </div>
 
@@ -211,10 +212,10 @@ export default function ServiceEdit() {
 
           {error && <p className="error">{error}</p>}
 
-          <div className="toolbar" style={{ marginTop: '0.5rem' }}>
+          <div className="form-actions">
             <button type="submit" className="btn btn-primary" disabled={saving || uploading}>
               <i className="ri-save-line" aria-hidden="true" />
-              {saving ? 'Guardando…' : isNew ? 'Crear servicio' : 'Guardar cambios'}
+              <span className="btn-text">{saving ? 'Guardando…' : isNew ? 'Crear servicio' : 'Guardar cambios'}</span>
             </button>
           </div>
         </form>

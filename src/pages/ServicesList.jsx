@@ -51,7 +51,8 @@ export default function ServicesList() {
         <div className="toolbar">
           <h2 className="toolbar__title">All services</h2>
           <Link to="/services/new" className="btn btn-primary">
-            <i className="ri-add-line" aria-hidden="true" /> New service
+            <i className="ri-add-line" aria-hidden="true" />
+            <span className="btn-text">New service</span>
           </Link>
         </div>
 
@@ -59,54 +60,102 @@ export default function ServicesList() {
           <div className="empty-state">
             <i className="ri-sparkling-2-line" aria-hidden="true" />
             <p>No services yet. Create the first one to populate the website.</p>
-            <Link to="/services/new" className="btn btn-primary" style={{ marginTop: '1rem' }}>
-              <i className="ri-add-line" aria-hidden="true" /> Create service
+            <Link to="/services/new" className="btn btn-primary empty-state__cta">
+              <i className="ri-add-line" aria-hidden="true" />
+              <span className="btn-text">Create service</span>
             </Link>
           </div>
         ) : (
-          <div className="table-wrap">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Image</th>
-                  <th>Title</th>
-                  <th>Slug</th>
-                  <th>Order</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {services.map((service) => (
-                  <tr key={service.id}>
-                    <td>
-                      {service.image ? (
-                        <img src={service.image} alt="" className="thumb" />
-                      ) : (
-                        '—'
-                      )}
-                    </td>
-                    <td>{service.title}</td>
-                    <td><code>{service.slug}</code></td>
-                    <td>{service.order}</td>
-                    <td>
+          <>
+            <div className="service-cards" aria-label="Services list">
+              {services.map((service) => (
+                <article key={service.id} className="service-card">
+                  <div className="service-card__media">
+                    {service.image ? (
+                      <img src={service.image} alt="" className="service-card__thumb" />
+                    ) : (
+                      <div className="service-card__thumb service-card__thumb--empty" aria-hidden="true">
+                        <i className="ri-image-line" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="service-card__body">
+                    <div className="service-card__head">
+                      <h3 className="service-card__title">{service.title}</h3>
                       <span className={`badge ${service.active ? 'badge--on' : 'badge--off'}`}>
                         {service.active ? 'Active' : 'Hidden'}
                       </span>
-                    </td>
-                    <td>
-                      <Link to={`/services/${service.id}`} className="btn btn-secondary" style={{ marginRight: '0.5rem' }}>
-                        <i className="ri-edit-line" aria-hidden="true" /> Edit
+                    </div>
+                    <p className="service-card__slug"><code>{service.slug}</code></p>
+                    <div className="service-card__actions">
+                      <Link to={`/services/${service.id}`} className="btn btn-secondary">
+                        <i className="ri-edit-line" aria-hidden="true" />
+                        <span className="btn-text">Edit</span>
                       </Link>
-                      <button type="button" className="btn btn-danger" onClick={() => handleDelete(service.id, service.title)}>
-                        <i className="ri-delete-bin-line" aria-hidden="true" /> Delete
+                      <button
+                        type="button"
+                        className="btn btn-danger"
+                        onClick={() => handleDelete(service.id, service.title)}
+                      >
+                        <i className="ri-delete-bin-line" aria-hidden="true" />
+                        <span className="btn-text">Delete</span>
                       </button>
-                    </td>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="table-wrap services-table">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Slug</th>
+                    <th>Order</th>
+                    <th>Status</th>
+                    <th>Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {services.map((service) => (
+                    <tr key={service.id}>
+                      <td>
+                        {service.image ? (
+                          <img src={service.image} alt="" className="thumb" />
+                        ) : (
+                          '—'
+                        )}
+                      </td>
+                      <td>{service.title}</td>
+                      <td><code>{service.slug}</code></td>
+                      <td>{service.order}</td>
+                      <td>
+                        <span className={`badge ${service.active ? 'badge--on' : 'badge--off'}`}>
+                          {service.active ? 'Active' : 'Hidden'}
+                        </span>
+                      </td>
+                      <td className="table__actions">
+                        <Link to={`/services/${service.id}`} className="btn btn-secondary">
+                          <i className="ri-edit-line" aria-hidden="true" />
+                          <span className="btn-text">Edit</span>
+                        </Link>
+                        <button
+                          type="button"
+                          className="btn btn-danger"
+                          onClick={() => handleDelete(service.id, service.title)}
+                        >
+                          <i className="ri-delete-bin-line" aria-hidden="true" />
+                          <span className="btn-text">Delete</span>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
         )}
       </div>
     </>
