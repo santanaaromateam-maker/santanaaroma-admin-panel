@@ -1,0 +1,51 @@
+# ── Secrets & local config ──
+.env
+.env.*
+!.env.example
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ── Dependencies ──
+node_modules/
+
+# ── Build output ──
+dist/
+dist-ssr/
+build/
+*.local
+
+# ── Vite ──
+.vite/
+
+# ── Logs ──
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ── Testing & coverage ──
+coverage/
+.nyc_output/
+
+# ── Cache ──
+.cache/
+.eslintcache
+*.tsbuildinfo
+
+# ── OS & editors ──
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ── Optional deploy hosts ──
+.vercel/
+.netlify/
