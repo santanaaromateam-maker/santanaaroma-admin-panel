@@ -64,63 +64,39 @@ export const api = {
   },
 };
 
+function descriptionFromService(service) {
+  const intro = service.intro || [];
+  if (intro.length) return intro.join('\n\n');
+  return service.shortDescription || service.short_description || '';
+}
+
 export function apiServiceToForm(service) {
   if (!service) return emptyServiceForm();
   return {
-    slug: service.slug || '',
     title: service.title || '',
-    short_description: service.shortDescription || service.short_description || '',
-    chip_label: service.chipLabel || service.chip_label || '',
-    order: service.order ?? 0,
-    active: service.active ?? true,
+    description: descriptionFromService(service),
     image: service.image || '',
     image_alt: service.imageAlt || service.image_alt || '',
-    hero_title: service.heroTitle || service.hero_title || '',
-    hero_subtitle: service.heroSubtitle || service.hero_subtitle || '',
-    meta_description: service.metaDescription || service.meta_description || '',
-    intro: (service.intro || []).join('\n'),
-    service_areas: (service.serviceAreas || service.service_areas || []).join('\n'),
-    whatsapp_text: service.whatsappText || service.whatsapp_text || '',
-    gallery: service.gallery || [],
+    gallery: (service.gallery || []).map((item) => ({ src: item.src, alt: item.alt || '' })),
   };
 }
 
 export function formToApiPayload(form) {
   return {
-    slug: form.slug.trim(),
     title: form.title.trim(),
-    short_description: form.short_description.trim(),
-    chip_label: form.chip_label.trim() || form.title.trim(),
-    order: Number(form.order) || 0,
-    active: Boolean(form.active),
+    description: form.description.trim(),
     image: form.image.trim(),
     image_alt: form.image_alt.trim(),
-    hero_title: form.hero_title.trim(),
-    hero_subtitle: form.hero_subtitle.trim(),
-    meta_description: form.meta_description.trim(),
-    intro: form.intro.split('\n').map((l) => l.trim()).filter(Boolean),
-    gallery: form.gallery,
-    service_areas: form.service_areas.split('\n').map((l) => l.trim()).filter(Boolean),
-    whatsapp_text: form.whatsapp_text.trim(),
+    gallery: form.gallery.map((item) => ({ src: item.src, alt: item.alt || '' })),
   };
 }
 
 export function emptyServiceForm() {
   return {
-    slug: '',
     title: '',
-    short_description: '',
-    chip_label: '',
-    order: 0,
-    active: true,
+    description: '',
     image: '',
     image_alt: '',
-    hero_title: '',
-    hero_subtitle: '',
-    meta_description: '',
-    intro: '',
-    service_areas: '',
-    whatsapp_text: '',
     gallery: [],
   };
 }
