@@ -55,16 +55,20 @@ export default function ServiceEdit() {
   }
 
   async function handleGalleryUpload(e) {
-    const file = e.target.files?.[0];
-    if (!file) return;
+    const files = Array.from(e.target.files || []);
+    if (!files.length) return;
 
     setUploading(true);
     setError('');
     try {
-      const result = await api.uploadImage(file);
+      const uploaded = [];
+      for (const file of files) {
+        const result = await api.uploadImage(file);
+        uploaded.push({ src: result.url, alt: '' });
+      }
       setForm((prev) => ({
         ...prev,
-        gallery: [...prev.gallery, { src: result.url, alt: '' }],
+        gallery: [...prev.gallery, ...uploaded],
       }));
     } catch (err) {
       setError(err.message);
@@ -204,9 +208,11 @@ export default function ServiceEdit() {
                 id="gallery-upload"
                 type="file"
                 accept="image/*"
+                multiple
                 onChange={handleGalleryUpload}
                 disabled={uploading}
               />
+              <p className="hint">Puedes seleccionar varias imágenes a la vez.</p>
             </div>
           </fieldset>
 
