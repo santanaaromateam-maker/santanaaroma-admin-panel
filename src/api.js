@@ -57,6 +57,14 @@ export const api = {
   deleteService: (id) =>
     request(`/api/admin/services/${id}`, { method: 'DELETE' }),
 
+  getSiteSettings: () => request('/api/admin/site-settings'),
+
+  updateSiteSettings: (payload) =>
+    request('/api/admin/site-settings', {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+    }),
+
   uploadImage: (file) => {
     const form = new FormData();
     form.append('file', file);

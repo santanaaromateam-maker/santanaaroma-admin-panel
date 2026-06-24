@@ -437,6 +437,21 @@ a {
   margin-top: 0.5rem;
 }
 
+.image-preview--wide {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  max-height: 280px;
+  object-fit: cover;
+}
+
+.success {
+  color: var(--color--1);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 0.92rem;
+  margin-top: 0.75rem;
+}
+
 .gallery-list {
   display: flex;
   flex-direction: column;

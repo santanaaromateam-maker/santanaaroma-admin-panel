@@ -6,6 +6,7 @@ export default function Layout() {
   const { admin, logout } = useAuth();
   const location = useLocation();
   const onList = location.pathname === '/';
+  const onSettings = location.pathname === '/settings';
 
   return (
     <div className="app-shell">
@@ -22,6 +23,10 @@ export default function Layout() {
           <Link to="/" className={`btn ${onList ? 'btn-primary' : 'btn-secondary'}`} aria-label="Services list">
             <i className="ri-list-check" aria-hidden="true" />
             <span className="btn-text">Services</span>
+          </Link>
+          <Link to="/settings" className={`btn ${onSettings ? 'btn-primary' : 'btn-secondary'}`} aria-label="Site settings">
+            <i className="ri-home-gear-line" aria-hidden="true" />
+            <span className="btn-text">Home</span>
           </Link>
           <Link to="/services/new" className="btn btn-primary" aria-label="New service">
             <i className="ri-add-line" aria-hidden="true" />
