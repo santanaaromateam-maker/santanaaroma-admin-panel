@@ -160,6 +160,20 @@ export default function ServiceEdit() {
             </p>
           </div>
 
+          <div className="form-group">
+            <label className="checkbox-label">
+              <input
+                type="checkbox"
+                checked={form.is_commercial}
+                onChange={(e) => updateField('is_commercial', e.target.checked)}
+              />
+              Servicio comercial
+            </label>
+            <p className="hint">
+              Si está marcado, el formulario pedirá nombre de empresa. Si no, solo pedirá el nombre de la persona.
+            </p>
+          </div>
+
           <fieldset className="form-fieldset">
             <legend className="form-fieldset__legend">Imagen principal</legend>
             <div className="form-group">

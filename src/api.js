@@ -78,6 +78,7 @@ export function apiServiceToForm(service) {
     image: service.image || '',
     image_alt: service.imageAlt || service.image_alt || '',
     gallery: (service.gallery || []).map((item) => ({ src: item.src, alt: item.alt || '' })),
+    is_commercial: service.isCommercial !== false,
   };
 }
 
@@ -88,6 +89,7 @@ export function formToApiPayload(form) {
     image: form.image.trim(),
     image_alt: form.image_alt.trim(),
     gallery: form.gallery.map((item) => ({ src: item.src, alt: item.alt || '' })),
+    is_commercial: Boolean(form.is_commercial),
   };
 }
 
@@ -98,5 +100,6 @@ export function emptyServiceForm() {
     image: '',
     image_alt: '',
     gallery: [],
+    is_commercial: true,
   };
 }

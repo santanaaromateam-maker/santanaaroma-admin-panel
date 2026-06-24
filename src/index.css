@@ -264,6 +264,22 @@ a {
   opacity: 0.7;
 }
 
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 0.95rem;
+  color: var(--color--3);
+  cursor: pointer;
+}
+
+.checkbox-label input {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--color--1);
+}
+
 /* ── Buttons ── */
 
 .btn {
